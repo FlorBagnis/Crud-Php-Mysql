@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🛍️ Mis productos | CRUD Demo</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff0f7, #ffe1ef);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 0;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1000px;
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 10px 35px rgba(214, 78, 145, 0.18);
+        }
+
+        h1 {
+            color: #d94f91;
+            margin: 0 0 8px;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: #888;
+            margin: 0 0 25px;
+            font-size: 14px;
+        }
+
+        .demo {
+            background: #fff0f7;
+            color: #b83d78;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .boton {
+            display: inline-block;
+            border: none;
+            text-decoration: none;
+            background: linear-gradient(135deg, #e7549b, #d94f91);
+            color: white;
+            padding: 13px 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .boton:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(217, 79, 145, 0.25);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        thead {
+            background: #fde1ed;
+        }
+
+        th {
+            color: #b83d78;
+            padding: 14px 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px 12px;
+            border-bottom: 1px solid #f3d8e4;
+            color: #555;
+            background: white;
+        }
+
+        tbody tr:hover td {
+            background: #fff7fa;
+        }
+
+        .editar,
+        .eliminar {
+            display: inline-block;
+            padding: 7px 11px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 2px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .editar {
+            background: #fde1ed;
+            color: #c43f7e;
+        }
+
+        .editar:hover {
+            background: #f8c9dd;
+        }
+
+        .eliminar {
+            background: #ffe5e5;
+            color: #c0392b;
+        }
+
+        .eliminar:hover {
+            background: #ffcfcf;
+        }
+
+        /* FORMULARIO */
+
+        .formulario {
+            display: none;
+            background: #fff7fa;
+            border: 1px solid #f3d8e4;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .formulario.activo {
+            display: block;
+        }
+
+        .formulario h2 {
+            color: #d94f91;
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .campo {
+            margin-bottom: 15px;
+        }
+
+        .campo label {
+            display: block;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #f3c4d9;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .campo input:focus {
+            border-color: #e7549b;
+        }
+
+        .acciones-formulario {
+            display: flex;
+            gap: 10px;
+        }
+
+        .guardar {
+            border: none;
+            background: #d94f91;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .cancelar {
+            border: none;
+            background: #eee;
+            color: #666;
+            padding: 11px 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .mensaje {
+            display: none;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            background: #e8f8ef;
+            color: #238b57;
+            border: 1px solid #b7e4c7;
+        }
+
+        .info {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #f3d8e4;
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+
+            .contenedor {
+                width: 95%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .acciones-formulario {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <h1>🛍️ Mis productos</h1>
+
+    <p class="subtitulo">
+        CRUD interactivo — Demo para GitHub Pages
+    </p>
+
+    <div class="demo">
+        💗 Demo frontend: los cambios se guardan en este navegador mediante localStorage.
+        El proyecto original utiliza PHP + MySQL.
+    </div>
+
+    <div id="mensaje" class="mensaje"></div>
+
+    <button class="boton" onclick="mostrarFormulario()">
+        + Agregar producto
+    </button>
+
+    <!-- FORMULARIO -->
+
+    <div id="formulario" class="formulario">
+
+        <h2 id="tituloFormulario">Agregar producto</h2>
+
+        <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input
+                type="text"
+                id="nombre"
+                placeholder="Ej: Remera rosa"
+            >
+        </div>
+
+        <div class="campo">
+            <label for="precio">Precio</label>
+            <input
+                type="number"
+                id="precio"
+                placeholder="Ej: 15000"
+                min="0"
+                step="0.01"
+            >
+        </div>
+
+        <div class="acciones-formulario">
+
+            <button
+                class="guardar"
+                onclick="guardarProducto()"
+            >
+                Guardar producto
+            </button>
+
+            <button
+                class="cancelar"
+                onclick="cerrarFormulario()"
+            >
+                Cancelar
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- TABLA -->
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="tablaProductos"></tbody>
+
+    </table>
+
+    <div class="info">
+        PHP · MySQL · SQL · HTML · CSS · JavaScript · XAMPP · GitHub
+    </div>
+
+</div>
+
+
+<script>
+
+    // ==========================================
+    // DATOS INICIALES
+    // ==========================================
+
+    let productos = JSON.parse(
+        localStorage.getItem("productosDemo")
+    ) || [
+
+        {
+            id: 1,
+            nombre: "Remera rosa",
+            precio: 15000
+        },
+
+        {
+            id: 2,
+            nombre: "Remera blanca",
+            precio: 13500
+        },
+
+        {
+            id: 3,
+            nombre: "Pantalón negro",
+            precio: 28000
+        },
+
+        {
+            id: 4,
+            nombre: "Vestido rosa",
+            precio: 45000
+        }
+
+    ];
+
+    let productoEditando = null;
+
+
+    // ==========================================
+    // MOSTRAR PRODUCTOS
+    // ==========================================
+
+    function mostrarProductos() {
+
+        const tabla = document.getElementById("tablaProductos");
+
+        tabla.innerHTML = "";
+
+        productos.forEach(function(producto) {
+
+            const fila = document.createElement("tr");
+
+            fila.innerHTML = `
+
+                <td>${producto.id}</td>
+
+                <td>${producto.nombre}</td>
+
+                <td>
+                    $${producto.precio.toLocaleString("es-AR", {
+                        minimumFractionDigits: 2
+                    })}
+                </td>
+
+                <td>
+
+                    <button
+                        class="editar"
+                        onclick="editarProducto(${producto.id})"
+                    >
+                        Editar
+                    </button>
+
+                    <button
+                        class="eliminar"
+                        onclick="eliminarProducto(${producto.id})"
+                    >
+                        Eliminar
+                    </button>
+
+                </td>
+
+            `;
+
+            tabla.appendChild(fila);
+
+        });
+
+    }
+
+
+    // ==========================================
+    // GUARDAR EN LOCALSTORAGE
+    // ==========================================
+
+    function guardarEnLocalStorage() {
+
+        localStorage.setItem(
+            "productosDemo",
+            JSON.stringify(productos)
+        );
+
+    }
+
+
+    // ==========================================
+    // MOSTRAR FORMULARIO
+    // ==========================================
+
+    function mostrarFormulario() {
+
+        productoEditando = null;
+
+        document.getElementById("tituloFormulario").textContent =
+            "Agregar producto";
+
+        document.getElementById("nombre").value = "";
+
+        document.getElementById("precio").value = "";
+
+        document.getElementById("formulario")
+            .classList.add("activo");
+
+        document.getElementById("nombre").focus();
+
+    }
+
+
+    // ==========================================
+    // CERRAR FORMULARIO
+    // ==========================================
+
+    function cerrarFormulario() {
+
+        document.getElementById("formulario")
+            .classList.remove("activo");
+
+        productoEditando = null;
+
+    }
+
+
+    // ==========================================
+    // GUARDAR PRODUCTO
+    // ==========================================
+
+    function guardarProducto() {
+
+        const nombre =
+            document.getElementById("nombre").value.trim();
+
+        const precio =
+            parseFloat(
+                document.getElementById("precio").value
+            );
+
+
+        if (nombre === "") {
+
+            alert("Por favor, ingresá un nombre.");
+
+            return;
+
+        }
+
+
+        if (isNaN(precio) || precio < 0) {
+
+            alert("Por favor, ingresá un precio válido.");
+
+            return;
+
+        }
+
+
+        // EDITAR
+
+        if (productoEditando !== null) {
+
+            const producto = productos.find(
+                p => p.id === productoEditando
+            );
+
+            producto.nombre = nombre;
+
+            producto.precio = precio;
+
+            mostrarMensaje("Producto actualizado correctamente.");
+
+        }
+
+        // AGREGAR
+
+        else {
+
+            const nuevoId =
+                productos.length > 0
+                    ? Math.max(...productos.map(p => p.id)) + 1
+                    : 1;
+
+            productos.push({
+
+                id: nuevoId,
+
+                nombre: nombre,
+
+                precio: precio
+
+            });
+
+            mostrarMensaje("Producto agregado correctamente.");
+
+        }
+
+
+        guardarEnLocalStorage();
+
+        mostrarProductos();
+
+        cerrarFormulario();
+
+    }
+
+
+    // ==========================================
+    // EDITAR PRODUCTO
+    // ==========================================
+
+    function editarProducto(id) {
+
+        const producto = productos.find(
+            p => p.id === id
+        );
+
+        if (!producto) {
+            return;
+        }
+
+
+        productoEditando = id;
+
+
+        document.getElementById("tituloFormulario")
+            .textContent = "Editar producto";
+
+
+        document.getElementById("nombre").value =
+            producto.nombre;
+
+
+        document.getElementById("precio").value =
+            producto.precio;
+
+
+        document.getElementById("formulario")
+            .classList.add("activo");
+
+
+        document.getElementById("nombre").focus();
+
+    }
+
+
+    // ==========================================
+    // ELIMINAR PRODUCTO
+    // ==========================================
+
+    function eliminarProducto(id) {
+
+        const producto = productos.find(
+            p => p.id === id
+        );
+
+        if (!producto) {
+            return;
+        }
+
+
+        const confirmar = confirm(
+            `¿Querés eliminar "${producto.nombre}"?`
+        );
+
+
+        if (!confirmar) {
+            return;
+        }
+
+
+        productos = productos.filter(
+            p => p.id !== id
+        );
+
+
+        guardarEnLocalStorage();
+
+        mostrarProductos();
+
+        mostrarMensaje("Producto eliminado correctamente.");
+
+    }
+
+
+    // ==========================================
+    // MENSAJE
+    // ==========================================
+
+    function mostrarMensaje(texto) {
+
+        const mensaje =
+            document.getElementById("mensaje");
+
+        mensaje.textContent = "✓ " + texto;
+
+        mensaje.style.display = "block";
+
+
+        setTimeout(function() {
+
+            mensaje.style.display = "none";
+
+        }, 3000);
+
+    }
+
+
+    // ==========================================
+    // INICIAR
+    // ==========================================
+
+    mostrarProductos();
+
+</script>
+
+</body>
+</html>
