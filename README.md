@@ -1,74 +1,127 @@
 # 🛍️ CRUD de Productos — PHP + MySQL
-<img width="1394" height="860" alt="image" src="https://github.com/user-attachments/assets/8e91705c-cf4d-468f-bc2b-fb342be2916b" />
-<img width="1306" height="741" alt="image" src="https://github.com/user-attachments/assets/15baa31e-98f7-4b3b-9847-f4e444679525" />
+
+<img width="1690" height="867" alt="image" src="https://github.com/user-attachments/assets/f7724b8f-4118-4163-a487-db5634b8e771" />
 
 
-Proyecto práctico desarrollado para reforzar conocimientos de **PHP, MySQL, SQL y operaciones CRUD**, trabajando con una base de datos local mediante XAMPP.
+Proyecto práctico desarrollado para aprender y reforzar conocimientos de **PHP, MySQL, SQL y operaciones CRUD**, utilizando XAMPP como entorno de desarrollo local.
 
-El proyecto simula una herramienta sencilla de gestión de productos, permitiendo consultar, agregar, editar y eliminar registros almacenados en una base de datos.
+Además, el proyecto cuenta con una **demo frontend interactiva publicada mediante GitHub Pages**, que permite probar las operaciones CRUD directamente desde el navegador.
 
-## 🎯 Objetivo
+## 🚀 Demo online
 
-Este proyecto forma parte de mi aprendizaje técnico orientado a posiciones de **Technical Support, Support Analyst y Technical Customer Support**.
+👉 **[Ver demo interactiva en GitHub Pages](https://florbagnis.github.io/crud-php-mysql/)**
 
-El objetivo es desarrollar una base práctica para comprender cómo funcionan las aplicaciones que interactúan con bases de datos y poder identificar, analizar y resolver incidencias relacionadas con datos, consultas SQL y operaciones dentro de un sistema.
+<img width="1588" height="878" alt="image" src="https://github.com/user-attachments/assets/b2e50fdc-bc3f-4e7b-9488-982ca62f3c35" />
+
+
+La demo permite:
+
+* ➕ Agregar productos
+* ✏️ Editar productos
+* 🗑️ Eliminar productos
+* 💾 Persistir los cambios utilizando `localStorage`
+
+> La demo de GitHub Pages funciona con **HTML, CSS y JavaScript** y no utiliza PHP ni MySQL.
+> El CRUD original desarrollado con PHP + MySQL funciona localmente mediante XAMPP.
+
+
+
+---
+
+## 🎯 Objetivo del proyecto
+
+El objetivo principal es practicar conceptos fundamentales de desarrollo web y bases de datos que pueden resultar útiles en posiciones de:
+
+* Technical Support
+* Support Analyst
+* Technical Customer Support
+* Customer Experience
+* Operations
+
+El proyecto busca comprender cómo interactúan una interfaz, el código del servidor, las consultas SQL y una base de datos.
+
+---
 
 ## 🛠️ Tecnologías utilizadas
 
-* **PHP**
-* **MySQL**
-* **SQL**
-* **HTML5**
-* **CSS3**
-* **XAMPP**
-* **Git & GitHub**
+* PHP
+* MySQL
+* SQL
+* HTML5
+* CSS3
+* JavaScript
+* XAMPP
+* phpMyAdmin
+* Git
+* GitHub
+* GitHub Pages
 
-## ⚙️ Funcionalidades
+---
 
-El sistema permite realizar las principales operaciones CRUD:
+## 📋 Funcionalidades
 
-* ➕ **Create:** agregar nuevos productos.
-* 🔎 **Read:** consultar los productos almacenados.
-* ✏️ **Update:** editar productos existentes.
-* 🗑️ **Delete:** eliminar productos.
+### CRUD con PHP + MySQL
 
-Cada producto contiene información como:
+La versión principal del proyecto permite:
 
-* ID
-* Nombre
-* Precio
+* **Create** → Crear productos
+* **Read** → Consultar productos
+* **Update** → Editar productos
+* **Delete** → Eliminar productos
+
+Los productos se almacenan en una base de datos MySQL.
+
+### Demo interactiva
+
+La versión publicada en GitHub Pages permite realizar las mismas operaciones desde el frontend:
+
+* Crear productos
+* Visualizar productos
+* Editar productos
+* Eliminar productos
+
+Los cambios de la demo se almacenan mediante `localStorage`.
+
+---
 
 ## 🗄️ Base de datos
 
-El proyecto utiliza una base de datos MySQL llamada `crud_productos`.
-
-La aplicación se conecta a MySQL mediante PHP utilizando `mysqli`.
-
-El proyecto fue desarrollado inicialmente en un entorno local utilizando:
-
-**XAMPP + Apache + MySQL + phpMyAdmin**
-
-## 📂 Estructura del proyecto
+Base de datos utilizada:
 
 ```text
-crud-php-mysql/
-│
-├── index.php          # Listado de productos
-├── crear.php          # Alta de productos
-├── editar.php         # Edición de productos
-├── eliminar.php       # Eliminación de productos
-├── conexion.php       # Conexión con MySQL
-├── estilos.css        # Estilos visuales
-├── database.sql       # Estructura de la base de datos
-└── README.md          # Documentación del proyecto
+crud_productos
 ```
 
-## 🔄 Flujo de funcionamiento
+Tabla principal:
+
+```text
+productos
+```
+
+Estructura:
+
+| Campo  | Tipo          | Descripción         |
+| ------ | ------------- | ------------------- |
+| id     | INT           | Identificador único |
+| nombre | VARCHAR(100)  | Nombre del producto |
+| precio | DECIMAL(10,2) | Precio del producto |
+| fecha  | DATE          | Fecha               |
+| hora   | TIME          | Hora                |
+
+El campo `id` funciona como **clave primaria** y utiliza `AUTO_INCREMENT`.
+
+El archivo `database.sql` contiene el script necesario para crear la base de datos y la tabla.
+
+---
+
+## 🔄 Flujo del proyecto
+
+### Implementación PHP + MySQL
 
 ```text
 Usuario
    ↓
-Formulario / interfaz web
+Formulario / Interfaz
    ↓
 PHP
    ↓
@@ -81,56 +134,178 @@ Respuesta
 Interfaz actualizada
 ```
 
-## 💻 Entorno de desarrollo
+### Demo GitHub Pages
 
-Para ejecutar el proyecto localmente:
+```text
+Usuario
+   ↓
+HTML / CSS
+   ↓
+JavaScript
+   ↓
+localStorage
+   ↓
+Interfaz actualizada
+```
 
-1. Instalar **XAMPP**.
-2. Iniciar **Apache** y **MySQL**.
-3. Colocar el proyecto dentro de:
+---
+
+## 📁 Estructura del proyecto
+
+```text
+crud-php-mysql/
+│
+├── index.php
+├── index.html
+├── crear.php
+├── editar.php
+├── eliminar.php
+├── conexion.php
+├── estilos.css
+├── database.sql
+└── README.md
+```
+
+### Principales archivos
+
+**`index.php`**
+Muestra los productos almacenados en MySQL.
+
+**`index.html`**
+Versión frontend interactiva utilizada por GitHub Pages.
+
+**`crear.php`**
+Permite insertar nuevos productos en MySQL.
+
+**`editar.php`**
+Permite modificar productos existentes.
+
+**`eliminar.php`**
+Permite eliminar productos.
+
+**`conexion.php`**
+Contiene la conexión entre PHP y MySQL.
+
+**`database.sql`**
+Script para crear la base de datos y la tabla.
+
+**`estilos.css`**
+Estilos visuales de la aplicación PHP.
+
+---
+
+## 💻 Ejecutar el CRUD PHP + MySQL localmente
+
+Para ejecutar la versión completa:
+
+### 1. Instalar XAMPP
+
+Iniciar:
+
+```text
+Apache
+MySQL
+```
+
+### 2. Colocar el proyecto
+
+Copiar la carpeta dentro de:
 
 ```text
 C:\xampp\htdocs\
 ```
 
-4. Crear/importar la base de datos en **phpMyAdmin**.
-5. Configurar la conexión en `conexion.php`.
-6. Abrir:
+Por ejemplo:
+
+```text
+C:\xampp\htdocs\primer_crud
+```
+
+### 3. Crear la base de datos
+
+Abrir:
+
+```text
+http://localhost/phpmyadmin/
+```
+
+Crear/importar la base de datos utilizando:
+
+```text
+database.sql
+```
+
+### 4. Ejecutar el proyecto
+
+Abrir:
 
 ```text
 http://localhost/primer_crud/
 ```
 
-## 📚 Aprendizajes
+---
 
-A través de este proyecto practiqué:
+## 🧠 Conceptos practicados
 
-* Conexión entre PHP y MySQL.
-* Estructura y consultas SQL.
-* Operaciones CRUD.
-* Manejo de formularios.
-* Obtención y modificación de registros.
-* Identificación de errores de conexión con bases de datos.
-* Uso de phpMyAdmin.
-* Uso de XAMPP para desarrollar y probar aplicaciones localmente.
-* Control de versiones con Git.
-* Publicación y gestión de proyectos mediante GitHub.
+Durante el desarrollo del proyecto se trabajaron conceptos como:
 
-## 🚀 Próximos pasos
-
-Como parte del aprendizaje, el proyecto puede continuar evolucionando incorporando:
-
-* Validaciones adicionales.
-* Manejo de errores más completo.
-* Consultas SQL más avanzadas.
-* Búsqueda y filtros de productos.
-* Paginación.
-* Autenticación de usuarios.
-* Mejoras de seguridad.
-* Implementación de una API.
+* Conexión PHP + MySQL
+* Consultas SQL
+* `SELECT`
+* `INSERT`
+* `UPDATE`
+* `DELETE`
+* Claves primarias
+* `AUTO_INCREMENT`
+* Tipos de datos SQL
+* Formularios HTML
+* Procesamiento de datos mediante PHP
+* CRUD
+* `localStorage`
+* JavaScript
+* Git
+* GitHub
+* GitHub Pages
 
 ---
 
-### 👩‍💻 Sobre el proyecto
+## 🔎 Relación con Technical Support
 
-Proyecto desarrollado como práctica personal para fortalecer mis conocimientos técnicos y complementar mi experiencia en **Customer Experience, Support y Operations** con herramientas de programación y bases de datos.
+Este proyecto también sirve como práctica para comprender problemas técnicos relacionados con aplicaciones que utilizan bases de datos.
+
+Por ejemplo:
+
+* Verificar si un registro existe en una base de datos.
+* Consultar información mediante SQL.
+* Detectar datos incorrectos o inconsistentes.
+* Comprender errores relacionados con `INSERT`, `UPDATE` o `DELETE`.
+* Identificar problemas de conexión entre una aplicación y una base de datos.
+* Comprender el flujo entre frontend, backend y base de datos.
+
+El objetivo no es desarrollar un backend avanzado, sino adquirir una base técnica que permita **comprender, investigar y resolver incidencias relacionadas con aplicaciones y datos**.
+
+---
+
+## 📌 Próximos pasos
+
+Algunas mejoras posibles para futuras versiones:
+
+* Validaciones más avanzadas.
+* Búsqueda y filtrado de productos.
+* Ordenamiento por precio.
+* Paginación.
+* Manejo de errores.
+* Prepared Statements.
+* Autenticación de usuarios.
+* Mejoras de seguridad.
+* Conexión con una base de datos online.
+
+---
+
+## 👩‍💻 Sobre el proyecto
+
+Proyecto desarrollado como parte de mi aprendizaje práctico en **PHP, MySQL, SQL y desarrollo web**, orientado a complementar mi perfil en **Customer Experience, Technical Support y Operations**.
+
+**Florencia Bagnis**
+
+[GitHub](https://github.com/FlorBagnis)
