@@ -3,7 +3,7 @@
 <img width="1690" height="867" alt="image" src="https://github.com/user-attachments/assets/f7724b8f-4118-4163-a487-db5634b8e771" />
 
 
-Proyecto práctico desarrollado para aprender y reforzar conocimientos de **PHP, MySQL, SQL y operaciones CRUD**, utilizando XAMPP como entorno de desarrollo local.
+>Proyecto práctico desarrollado para aprender y reforzar conocimientos de **PHP, MySQL, SQL y operaciones CRUD**, utilizando XAMPP como entorno de desarrollo local.
 
 Además, el proyecto cuenta con una **demo frontend interactiva publicada mediante GitHub Pages**, que permite probar las operaciones CRUD directamente desde el navegador.
 
