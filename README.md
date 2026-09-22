@@ -7,9 +7,15 @@
 
 Además, el proyecto cuenta con una **demo frontend interactiva publicada mediante GitHub Pages**, que permite probar las operaciones CRUD directamente desde el navegador.
 
+<p align="center">
+  <a href="https://florbagnis.github.io/Crud-Php-Mysql/">
+    <img src="https://img.shields.io/badge/Ver_Demo-Abrir_Proyecto-ff69b4?style=for-the-badge&logo=githubpages&logoColor=white" alt="Ver Demo" />
+  </a>
+</p>
+
 ## 🚀 Demo online
 
-👉 **[Ver demo interactiva en GitHub Pages](https://florbagnis.github.io/crud-php-mysql/)**
+
 
 <img width="1588" height="878" alt="image" src="https://github.com/user-attachments/assets/b2e50fdc-bc3f-4e7b-9488-982ca62f3c35" />
 
