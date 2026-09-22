@@ -302,10 +302,15 @@ Algunas mejoras posibles para futuras versiones:
 
 ---
 
-## 👩‍💻 Sobre el proyecto
 
-Proyecto desarrollado como parte de mi aprendizaje práctico en **PHP, MySQL, SQL y desarrollo web**, orientado a complementar mi perfil en **Customer Experience, Technical Support y Operations**.
+### 👩‍💻 Autora
 
 **Florencia Bagnis**
 
-[GitHub](https://github.com/FlorBagnis)
+* 💼 [LinkedIn](https://www.linkedin.com/in/florencia-bagnis)
+* 💻 [Portfolio](https://florbagnis.github.io/Portfolio-FlorBagnis/)
+* 💌 [florenciasoledadbagnis@gmail.com](mailto:florenciasoledadbagnis@gmail.com)
+
+<br>
+
+> 🎓 Proyecto desarrollado como parte de mi aprendizaje práctico en **PHP**, **MySQL**, **SQL** y **desarrollo web**, orientado a complementar mi perfil en **Customer Experience**, **Technical Support** y **Operations**.
