@@ -308,6 +308,14 @@ Algunas mejoras posibles para futuras versiones:
 
 ---
 
+¿Te sirvió? Dejale una ⭐ al repo.
+
+---
+
+## 📄 Licencia
+
+Distribuido bajo licencia MIT. Ver el archivo `LICENSE`.
+
 
 ### 👩‍💻 Autora
 
